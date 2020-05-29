@@ -183,9 +183,18 @@ public class EvaluationService {
 	 * XX represents the original value minutes. YY represents the calculated years.
 	 * ZZ represents the calculated days.
 	 */
-	public String printYearsAndDays(long minutes) {
-		// TODO Write an implementation for this method declaration
-		return null;
+	public String printYearsAndDays(long minutes) { // Guessing this rounds down, doesn't state
+		if(minutes < 0L) {
+			return "Invalid Value"; // Negative minutes invalid
+		}
+		final long MINUTES_PER_DAY = 1440L;
+		final int DAYS_PER_YEAR = 365;
+		
+		int totalDays = (int) (minutes/MINUTES_PER_DAY); // total number of days
+		int years = totalDays/DAYS_PER_YEAR; // total number of years
+		int leftoverDays = totalDays%DAYS_PER_YEAR; // checks remainder of the days after the years calculated
+		
+		return (minutes + " min = " + years + " y and " + leftoverDays + " d");
 	}
 
 	/**
