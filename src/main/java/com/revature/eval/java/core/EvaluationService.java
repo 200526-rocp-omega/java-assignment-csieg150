@@ -150,6 +150,10 @@ public class EvaluationService {
 
 		public static boolean hasTeen(int x, int y, int z) {
 			// TODO Write an implementation for this method declaration
+			int[] range = {x,y,z};
+			for(int i : range) {
+				if(isTeen(i)) return true; // loops through input, if one is true then it 'has teen'
+			}
 			return false;
 		}
 
@@ -157,8 +161,10 @@ public class EvaluationService {
 		// Then pass the parameter to hasTeen method
 
 		public static boolean isTeen(int number) {
-			// TODO Write an implementation for this method declaration
-			return false;
+			if(number >= 13 && number <=19) {
+				return true; // if in the inclusive 13-19 range, it is a 'teen'
+			}
+			return false; // if not in the range, it is not a 'teen'
 		}
 	}
 
