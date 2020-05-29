@@ -46,7 +46,7 @@ public class EvaluationService {
 		 */
 		public static String printConversion(double kilometersPerHour) {
 			if(kilometersPerHour < 0) {
-				return "Invalid value"; // if negative, return error message
+				return "Invalid Value"; // if negative, return error message
 			}
 			long MPH = Math.round(kilometersPerHour*KPHTOMPH); // gets the MPH
 			String converted = kilometersPerHour + " km/h = " + MPH + " mi/h";
@@ -75,8 +75,14 @@ public class EvaluationService {
 	 * Value".
 	 */
 	public String printMegaBytesAndKiloBytes(int kiloBytes) {
-		
-		return null;
+		final int KB_PER_MB = 1024;
+		if(kiloBytes < 0) {
+			return "Invalid Value";
+		}
+		int mb = kiloBytes / KB_PER_MB; // get whole number of megabytes
+		int kb = kiloBytes % KB_PER_MB; // get remainder of kilobytes
+		String printMbAndKb = kiloBytes + " KB = " + mb + " MB and " + kb + " KB";
+		return printMbAndKb;
 	}
 
 	/**
