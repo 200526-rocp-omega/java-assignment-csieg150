@@ -128,8 +128,8 @@ public class EvaluationService {
 	public boolean areEqualByThreeDecimalPlaces(double firstNum, double secondNum) {
 		final double ADD_THREE_DECIMAL = 1000;
 		//Bring the three decimal places up and store these as ints for easy comparison
-		int firstThreeDecimal = (int) (Math.floor(firstNum) * ADD_THREE_DECIMAL);
-		int secondThreeDecimal = (int) (Math.floor(secondNum) * ADD_THREE_DECIMAL);
+		int firstThreeDecimal = (int) ((firstNum * ADD_THREE_DECIMAL));
+		int secondThreeDecimal = (int) ((secondNum * ADD_THREE_DECIMAL));
 		if(firstThreeDecimal == secondThreeDecimal) {
 			return true; // returns true if the decimals are equivalent
 		}		
