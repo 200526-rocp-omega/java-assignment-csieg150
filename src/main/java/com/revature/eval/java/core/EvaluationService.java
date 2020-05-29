@@ -105,8 +105,13 @@ public class EvaluationService {
 	 * If the hourOfDay parameter is less than 0 or greater than 23, return false.
 	 */
 	public boolean shouldWakeUp(boolean isBarking, int hourOfDay) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		if(hourOfDay > 23 || hourOfDay < 0 || !isBarking) { // if invalid time, or not barking
+			return false;
+		}
+		if(isBarking &&(hourOfDay < 8 || hourOfDay >22)) { // if barking after 22 and before 8
+			return true;
+		}
+		return false; // if barking but after 8 and before 23
 	}
 
 	/**
@@ -121,8 +126,14 @@ public class EvaluationService {
 	 * Otherwise, return false;
 	 */
 	public boolean areEqualByThreeDecimalPlaces(double firstNum, double secondNum) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		final double ADD_THREE_DECIMAL = 1000;
+		//Bring the three decimal places up and store these as ints for easy comparison
+		int firstThreeDecimal = (int) (Math.floor(firstNum) * ADD_THREE_DECIMAL);
+		int secondThreeDecimal = (int) (Math.floor(secondNum) * ADD_THREE_DECIMAL);
+		if(firstThreeDecimal == secondThreeDecimal) {
+			return true; // returns true if the decimals are equivalent
+		}		
+		return false; // returns false otherwise.
 	}
 
 	/**
