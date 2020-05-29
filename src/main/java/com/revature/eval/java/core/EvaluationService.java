@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public class EvaluationService {
+	static final double KPHTOMPH = 0.62137119223733; // The constant. kph * constant = mph value
 
 	/**
 	 * 1.A Speed Converter - Convert to MilesPerHour
@@ -21,8 +22,11 @@ public class EvaluationService {
 	static class SpeedConverter {
 
 		public static long toMilesPerHour(double kilometersPerHour) {
-			// TODO Write an implementation for this method declaration
-			return 0;
+			if(kilometersPerHour < 0) {
+				return -1L; // if negative, return negative 1 for 'error'
+			}
+			long MPH = Math.round(kilometersPerHour*KPHTOMPH); // Rounds the value
+			return MPH;
 		}
 
 		/**
@@ -41,8 +45,12 @@ public class EvaluationService {
 		 * Value"
 		 */
 		public static String printConversion(double kilometersPerHour) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			if(kilometersPerHour < 0) {
+				return "Invalid value"; // if negative, return error message
+			}
+			long MPH = Math.round(kilometersPerHour*KPHTOMPH); // gets the MPH
+			String converted = kilometersPerHour + " km/h = " + MPH + " mi/h";
+			return converted;
 		}
 	}
 
@@ -66,8 +74,8 @@ public class EvaluationService {
 	 * If the parameter kiloBytes is less than 0 then print the text "Invalid
 	 * Value".
 	 */
-	public String printMegaBytesAndKiloBytes(int XX) {
-		// TODO Write an implementation for this method declaration
+	public String printMegaBytesAndKiloBytes(int kiloBytes) {
+		
 		return null;
 	}
 
