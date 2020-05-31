@@ -1,5 +1,6 @@
 package com.revature.eval.java.core;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -242,8 +243,39 @@ public class EvaluationService {
 	 * and there is no resulting remainder.
 	 */
 	public int getGreatestCommonDivisor(int first, int second) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		if(first < 10 || second < 10) { // if either is below the range, return Invalid.
+			return -1;
+		}
+		int greatestCommonDivisor = 0; // eventual return value.
+		List<Integer> firstDivisors = new ArrayList<>(); // Establishes list to hold divisors.Not sure how many.
+		for(int i = 1; i <= (first/2); i++) { // only covers up to 'first / 2', saving time and number of loops.
+			if((first%i) == 0) {
+				firstDivisors.add(i); // Adds the first divisor. i * (first/i) = first, so we just add both in one 'if' statement.
+				firstDivisors.add((first/i));
+			}
+		} // ends with populating the first List.
+		
+		List<Integer> secondDivisors = new ArrayList<>(); // Establishes second list to hold divisors.Not sure how many.
+		for(int i = 1; i <= (second/2); i++) { // only covers up to 'second / 2', saving time and number of loops.
+			if((second%i) == 0) {
+				secondDivisors.add(i); // Adds the first divisor. i * (first/i) = first, so we just add both in one 'if' statement.
+				secondDivisors.add((second/i));
+			}
+		} // by now we have the list of both divisors. 
+		
+		
+		for(Integer f : firstDivisors) { // checks each divisor against the other.
+			for(Integer s: secondDivisors) {
+//				System.out.println(f.toString()); // Just here for testing purposes.
+//				System.out.println(s.toString());
+				if((s.equals(f)) && (s > greatestCommonDivisor)) { // If a match and bigger than the current greatest, replaces it.
+					greatestCommonDivisor = s; // Starts off at zero, and each list will always have at least '1' in common
+				}
+			}
+		} // by the end of the loop we should have the greatest divisor. 
+		
+		
+		return greatestCommonDivisor;
 	}
 
 	/**
