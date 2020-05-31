@@ -374,7 +374,6 @@ public class EvaluationService {
 			} else if(!hasWhitespace && hasHyphen) {
 				nextSubstring = nextSubstring.substring(nextHyphen +1); // cut substring to right after the '-' 
 			} else {
-				System.out.println(acronym);
 				return acronym; // If no more whitespace or hyphen, we should have all necesarry parts of the acronym.
 			}
 			
