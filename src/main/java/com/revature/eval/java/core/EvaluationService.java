@@ -470,8 +470,36 @@ public class EvaluationService {
 	 * 3 + 2*1 + 2*3 + 2 + 1 = 3 + 2 + 6 + 3 = 5 + 9 = 14
 	 */
 	public int getScrabbleScore(String string) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		string = string.toUpperCase(); // converts to uppercase just in the event input is lowercase, keep things uniform
+		char[] chars = string.toCharArray(); // convert to char array for easy access of individual letters.
+		int score = 0; // to display current score
+		String onePoint = "AEIOULNRST"; // Gives 1 point
+		String twoPoint = "DG"; // Gives 2 point
+		String threePoint = "BCMP"; // Gives 3 point
+		String fourPoint = "FHVWY"; // Gives 4 point
+		String fivePoint = "K"; // Gives 5 point
+		String eightPoint = "JX"; // Gives 8 point
+		String tenPoint = "QZ"; // Gives 10 point
+		
+		for(int i = 0; i < chars.length; i++) { // loops through for each char and adds appropriate points
+			String letter = "" + chars[i]; // Needed for using 'contains'
+			if(onePoint.contains(letter)) {
+				score += 1;
+			} else if(twoPoint.contains(letter)) {
+				score += 2;
+			} else if(threePoint.contains(letter)) {
+				score += 3;
+			} else if(fourPoint.contains(letter)) {
+				score += 4;
+			} else if(fivePoint.contains(letter)) {
+				score += 5;
+			} else if(eightPoint.contains(letter)) {
+				score += 8;
+			} else if(tenPoint.contains(letter)) { // Doing this check just in case an invalid character appears
+				score += 10;
+			}
+		}
+		return score;
 	}
 
 	/**
