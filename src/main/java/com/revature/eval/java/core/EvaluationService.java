@@ -317,8 +317,18 @@ public class EvaluationService {
 	 * reverses a String. Example: reverse("example"); -> "elpmaxe"
 	 */
 	public String reverse(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		if(string.length()<=1) {
+			return string; // If empty string or 1 character, no need to do the rest.
+		}
+		char[] stringChars = new char[string.length()];
+		for(int i = 0; i < string.length(); i++) {
+			stringChars[i] = string.charAt(string.length()-1-i); // Adds chars in reverse order. 
+		}
+		String reversed = "";
+		for(char c : stringChars) {
+			reversed = reversed + c; // adds each reversed character to a new string
+		}
+		return reversed;
 	}
 
 	/**
