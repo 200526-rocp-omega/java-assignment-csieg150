@@ -432,19 +432,25 @@ public class EvaluationService {
 			this.sideThree = sideThree;
 		}
 
-		public boolean isEquilateral() {
-			// TODO Write an implementation for this method declaration
+		public boolean isEquilateral() { // All 3 sides equal
+			if(sideOne == sideTwo && sideTwo == sideThree) { // If all match, it is Equilateral.
+				return true;
+			}
 			return false;
 		}
 
-		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
+		public boolean isIsosceles() { // At LEAST 2 sides equal.
+			if(sideOne == sideTwo || sideOne == sideThree || sideTwo == sideThree) { // If any match, it is Isosceles.
+				return true;
+			}
 			return false;
 		}
 
-		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
-			return false;
+		public boolean isScalene() { // No sides equal. Reverse of Isosceles test. 
+			if(sideOne == sideTwo || sideOne == sideThree || sideTwo == sideThree) { // If any match, not Scalene.
+				return false;
+			}
+			return true;
 		}
 
 	}
