@@ -3,6 +3,8 @@ package com.revature.eval.java.core;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class EvaluationService {
 	static final double KPHTOMPH = 0.62137119223733; // The constant. kph * constant = mph value
@@ -536,7 +538,37 @@ public class EvaluationService {
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
 	public String cleanPhoneNumber(String string) {
-		return null;
+		/*Had the idea for turning string into an array, checking if an index and its next 3 neighbors were int, 
+		 * and then adding it to a second string when matching that criteria,
+		 * but realistically I think I can do better via regex.
+		 * 
+		 * Using regex, Pattern and Matcher classes can pick out these groups of digits*/
+		
+//		if(string.charAt(0) == '1') { // This is in place during the event we expect people to lead off with 'country code'
+//			string = string.substring(1);
+//		}
+		
+		Pattern phoneString = Pattern.compile("(([2-9]\\d{2})\\D*(\\d{3})\\D*(\\d{4,}))"); 
+		// The above should allow for people entering their 10 digit code entirely, 
+		// as well as in groups of 3-3-4 or 3-7
+		Matcher m = phoneString.matcher(string);
+		
+		String cleanNumber = ""; // Empty string for concatenation 
+		
+		if(m.find()) { //Checks to see there were matched patterns.
+			for(int i = 2; i <= m.groupCount(); i++) { // For each matched group. Starts at 2 because thats where
+				// the subgroups begin to add to the 'clean number'.
+				cleanNumber = cleanNumber + m.group(i); // Adds each found group to the 'cleaned' number
+			}
+
+			if((cleanNumber.charAt(0) < 2) || (cleanNumber.length() != 10)) {
+				throw new IllegalArgumentException(); //If area code starts off wrong or not enough characters, throw exception
+			} 
+		} else {
+			throw new IllegalArgumentException(); // Not legal argument if it fails regex pattern
+		}
+		
+		return cleanNumber;
 	}
 
 	/**
