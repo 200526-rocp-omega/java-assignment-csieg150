@@ -1,6 +1,7 @@
 package com.revature.eval.java.core;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -580,8 +581,18 @@ public class EvaluationService {
 	 * free: 1
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		Map<String, Integer> wordCount = new HashMap<>();
+		String[] words = string.split("\\h|,\\R|,|\\R"); // Need to split the string like this cause of testcases.
+		// Covers white spaces, tabs, linebreaks, commas, and also commas followed by line breaks.
+		
+		for(String s : words) { // Loop through the split String array
+			if(wordCount.containsKey(s)) { // If the map has the key:
+				wordCount.replace(s, wordCount.get(s)+1); //Increment the value at that String key
+			} else { // If it doesn't:
+				wordCount.put(s, 1); // Add to map, initialize at 1
+			}
+		}
+		return wordCount;
 	}
 
 	/**
