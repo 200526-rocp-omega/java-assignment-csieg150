@@ -293,7 +293,21 @@ public class EvaluationService {
 	 */
 	public int sumFirstAndLastDigit(int num) {
 		// TODO Write an implementation for this method declaration
-		return 0;
+		if(num < 0) {
+			return -1; // Any negative number is invalid
+		}
+		String value = String.valueOf(num); //Acquire the string format of the num to basically turn it into an array
+		
+		// Get index at 0, convert single char back to string
+		// then use parseInt to turn it into a plain integer. parseInt does not accept chars directly.
+		int first = Integer.parseInt(String.valueOf(value.charAt(0)));
+		
+		int last = Integer.parseInt(String.valueOf(value.charAt(value.length()-1))); // returns last index.
+		
+		// Together we have the 'first'and 'last' digits of a number and can sum them. I don't know why the instructions
+		// suggested a loop.
+		int sum = first + last;
+		return sum;
 	}
 
 	/**
