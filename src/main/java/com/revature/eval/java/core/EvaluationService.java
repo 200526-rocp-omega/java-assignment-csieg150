@@ -339,8 +339,47 @@ public class EvaluationService {
 	 * long name like Portable Network Graphics to its acronym (PNG).
 	 */
 	public String acronym(String phrase) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		// Would've liked it to be that only Uppercase Letters are what determine acronyms, but sadly not.
+		// The test cases show that the char at index 0, and any char after " " or "-" are what make up the 
+		String acronym = ""; //Sets up empty string for concatonation.
+		boolean hasWhitespace = true;
+		boolean hasHyphen = true;
+		String nextSubstring = phrase;
+		int nextWhitespace =0;
+		int nextHyphen =0;
+		while(hasWhitespace || hasHyphen) {
+			// the two if statements check for the next index of whitespace and hyphen. If no more left, loop exit.
+			if(nextSubstring.indexOf(" ") != -1) {
+				nextWhitespace = nextSubstring.indexOf(" "); //returns first index of whitespace
+			} else {
+				hasWhitespace = false;
+			}
+			if(nextSubstring.indexOf("-") != -1) {
+				nextHyphen = nextSubstring.indexOf("-"); //returns first index of hyphen
+			} else {
+				hasHyphen = false;
+			}
+			
+			Character nextChar = Character.toUpperCase(nextSubstring.charAt(0));
+			acronym = acronym + nextChar; // Adds the char at index 0 of the current string before cutting it to next substring or returning
+			
+			if(hasWhitespace && !hasHyphen) { // Case where only whitespaces remain. Most common and therefore first
+				nextSubstring = nextSubstring.substring(nextWhitespace +1); // remove substring up to point of " " + 1, charat(0) is now the next acronym letter
+			} else if(hasWhitespace && hasHyphen) {
+				if(nextWhitespace < nextHyphen) {
+					nextSubstring = nextSubstring.substring(nextWhitespace +1); // next whitespace comes first, so go there
+				} else {
+					nextSubstring = nextSubstring.substring(nextHyphen +1);  // next hyphen comes first, so go there. 
+				}
+			} else if(!hasWhitespace && hasHyphen) {
+				nextSubstring = nextSubstring.substring(nextHyphen +1); // cut substring to right after the '-' 
+			} else {
+				System.out.println(acronym);
+				return acronym; // If no more whitespace or hyphen, we should have all necesarry parts of the acronym.
+			}
+			
+		}
+		return acronym; //Here just in case of failure somehow.
 	}
 
 	/**
