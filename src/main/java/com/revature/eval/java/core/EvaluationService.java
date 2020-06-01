@@ -718,6 +718,8 @@ public class EvaluationService {
 	 */
 	
 	public int guessingGame(int x, int y) {
-		return 0;
+		Random randGen = new Random();
+		int solution = randGen.nextInt(y-x) + x;
+		return solution;
 	}
 }
