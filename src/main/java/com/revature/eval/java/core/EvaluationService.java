@@ -180,8 +180,6 @@ public class EvaluationService {
 	 * The method should not return anything (void) and it needs to calculate the
 	 * years and days from the minutes parameter.
 	 * 
-	 * If the parameter is less than 0, print text "Invalid Value".
-	 * 
 	 * Otherwise, if the parameter is valid then it needs to print a message in the
 	 * format "XX min = YY y and ZZ d".
 	 * 
@@ -636,8 +634,30 @@ public class EvaluationService {
 	 * Note that 1 is not a prime number.
 	 */
 	public List<Long> calculatePrimeFactorsOf(long l) {
-		// TODO Write an implementation for this method declaration
-		return null;
+        List<Long> factors = new ArrayList<>(); // Make our array List to hold factors
+        for (int i = 2; i <= l / i; i++) { // Loop from 2 to half of l
+            while (l % i == 0) { // continues to divide until all instances of i are removed.
+                factors.add((long) i); //each time it can divide it adds the factor to the list.
+                l /= i;
+            }
+        }
+        if (l > 1) { // By the time it reaches here, the 'remainder' will be prime
+            factors.add(l);
+        }
+        return factors;
+		
+	}
+	
+	public boolean isPrime(long num) {
+		if(num==0 || num == 1) { // 0 and 1 are not prime
+			return false; 
+		} 
+		for(int i = 2; i < (num / 2); i++) { // Starting from 2, up to half the value of num (num/2)
+			if(num%i == 0) { // Check if divisible by the iterator
+				return false; // If so, return false.
+			}
+		}		
+		return true; // By reaching this point, the number must be prime.
 	}
 
 	/**
