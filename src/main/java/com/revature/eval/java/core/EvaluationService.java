@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -698,7 +699,12 @@ public class EvaluationService {
 	 */
 	
 	public int[] threeLuckyNumbers() {
-		return null;
+		int[] numbers = new int[3];
+		Random randGen = new Random();
+		numbers[0] = randGen.nextInt(100) + 1; // Because nextInt(100) is a range of 0-99 we add 1
+		numbers[1] = randGen.nextInt(100) + 1;
+		numbers[2] = randGen.nextInt(100) + 1;
+		return numbers;
 	}
 	
 	/*
