@@ -685,7 +685,19 @@ public class EvaluationService {
 	 * The sum of these multiples is 78.
 	 */
 	public int getSumOfMultiples(int i, int[] set) {
-		return 0;
+		int sum = 0; // the sum of multiples
+		List<Integer> multiples = new ArrayList<>(); // list to store multiples
+		for(int z : set) { // for each int in the set
+			int count = 1;
+			while(count*z < i) { // we go through multiples up until the 'bound'
+				if(!multiples.contains(count*z)){ // if it isn't in the multiples list
+					sum += (count*z); // we add it to the sum
+					multiples.add(count*z); // and then add it to the list as not to re-add it
+				}
+				count++; // increase the count / multiple number. 
+			}
+		}
+		return sum;
 	}
 	
 	/**
