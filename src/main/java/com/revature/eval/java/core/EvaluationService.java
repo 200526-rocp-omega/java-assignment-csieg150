@@ -610,7 +610,20 @@ public class EvaluationService {
 	 * a number is an Armstrong number.
 	 */
 	public boolean isArmstrongNumber(int input) {
-		return false;
+		boolean armstrong = false;
+		int checkInput = 0;
+		String inputString = "" + input; // converts to string for an easy char array
+		double length = inputString.length(); // Used for Math.pow
+		for(int i = 0; i < inputString.length(); i++) { // Loop through each character
+			String charSegment = "" +inputString.charAt(i);
+			checkInput = (int) (checkInput + Math.pow(Double.parseDouble(charSegment), length));
+			// In the above, we get the sum of each char raised to the 'length' power.
+			// For example, if we got 123 input, checkInput should go 1^3 + 2^3 + 3^3 because it is 3 characters long
+		}
+		if(input == checkInput) {
+			armstrong = true;
+		}
+		return armstrong;
 	}
 
 	/**
