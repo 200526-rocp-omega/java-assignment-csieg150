@@ -652,7 +652,7 @@ public class EvaluationService {
 	 * numbers, pretend they don't exist and implement them yourself.
 	 */
 	public int calculateNthPrime(int k) {
-		// TODO Write an implementation for this method declaration
+		
 		return 0;
 	}
 
@@ -669,8 +669,18 @@ public class EvaluationService {
 	 * insensitive. Input will not contain non-ASCII symbols.
 	 */
 	public boolean isPangram(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		if(string.length() < 26) {
+			return false; // Has to be at least 26 letters to even check.
+		}
+		String input = string.toLowerCase(); // None of the test cases use uppercase but this is future-proofing
+		// The below is a string array of the alphabet. We'll check if each one exists in the given string - if not then return false.
+		String[] alphabet = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
+		for(String s : alphabet) {
+			if(!input.contains(s)) { // If any character is 'missed' then it is not a pangram.
+				return false;
+			}
+		}
+		return true; // By exiting the forloop, it must have had all letters at least once.
 	}
 
 	/**
