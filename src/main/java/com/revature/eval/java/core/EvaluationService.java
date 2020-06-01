@@ -648,11 +648,11 @@ public class EvaluationService {
 		
 	}
 	
-	public boolean isPrime(long num) {
+	public boolean isPrime(long num) { // Extra method for  Nth prime
 		if(num==0 || num == 1) { // 0 and 1 are not prime
 			return false; 
 		} 
-		for(int i = 2; i < (num / 2); i++) { // Starting from 2, up to half the value of num (num/2)
+		for(int i = 2; i <= (num / 2); i++) { // Starting from 2, up to half the value of num (num/2) inclusive
 			if(num%i == 0) { // Check if divisible by the iterator
 				return false; // If so, return false.
 			}
@@ -672,8 +672,24 @@ public class EvaluationService {
 	 * numbers, pretend they don't exist and implement them yourself.
 	 */
 	public int calculateNthPrime(int k) {
-		
-		return 0;
+		if(k < 1) {
+			throw new IllegalArgumentException();
+		}
+		int count = 1; // The number if primes checked
+		int lastPrime = 2; // The first prime, 2
+		while(count < k) { // While we haven't found enough primes:
+			boolean loop = true; // Lets us find the next prime
+			int i = lastPrime; // The 'runner' is set equal to the last prime
+			while(loop) { // It will now loop until the next prime is discovered
+				i++; // Add first before check so we don't need to include a i > lastPrime statement in the if
+				if(isPrime(i)) { // If I is prime:
+					lastPrime = i; // set the lastPrime = i
+					loop = false; // break out of the loop
+				}				
+			}
+			count++; // Increments the count to see if we've reached our limit yet.
+		}
+		return lastPrime; // Finally returns the 'kth' prime
 	}
 
 	/**
